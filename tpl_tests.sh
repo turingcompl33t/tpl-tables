@@ -1,5 +1,6 @@
 # Create tables
 cd tpch-dbgen
+make
 ./dbgen -f -s $1
 mv *.tbl ..
 cd ..
