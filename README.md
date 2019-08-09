@@ -53,16 +53,16 @@ This creates:
 ## TPCH Tables
 To generate tpch tables with the **dbgen** program, execute:
 ```sh
-bash tpl_test.sh
+bash tpl_test.sh <scale_factor>
 ```
 
 ## Usage in TPL tests
 To load a table, use:
 ```C++
-# Load a single table
+// Load a single table
 TableGenerator::GenerateTable(schema_file, data_file);
-# Load tpch tables
+// Load tpch tables
 TableGenerator::GenerateTPCHTables(dir_name);
-# TODO: Implement this call to load all tables from a directory (requires std::filesystem or boost::filesystem)
+// TODO: Implement this call to load all tables from a directory (requires std::filesystem or boost::filesystem)
 TableGenerator::GenerateTablesFromDir(dir_name)
 ```

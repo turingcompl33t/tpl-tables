@@ -2,8 +2,8 @@
 cd tpch-dbgen
 make
 ./dbgen -f -s $1
-mv *.tbl ..
-cd ..
+mv *.tbl ../tables
+cd ../tables
 
 echo "Formatting..."
 # Remove last | in each line
