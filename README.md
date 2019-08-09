@@ -53,7 +53,7 @@ This creates:
 ## TPCH Tables
 To generate tpch tables with the **dbgen** program, execute:
 ```sh
-bash tpl_test.sh <scale_factor>
+bash gen_tpch.sh <scale_factor>
 ```
 
 ## Usage in TPL tests
