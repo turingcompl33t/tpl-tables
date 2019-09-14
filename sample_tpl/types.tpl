@@ -9,21 +9,20 @@ struct output_struct {
 fun main(execCtx: *ExecutionContext) -> int {
   var out : *output_struct
   var tvi: TableVectorIterator
-  @tableIterConstructBind(&tvi, "types1", execCtx, "t")
-  @tableIterAddColBind(&tvi, "t", "int_col")
-  @tableIterAddColBind(&tvi, "t", "real_col")
-  @tableIterAddColBind(&tvi, "t", "date_col")
-  @tableIterAddColBind(&tvi, "t", "varchar_col")
-  @tableIterPerformInitBind(&tvi, "t")
+  var pattern = @stringToSql("%d%")
+  @tableIterInit(&tvi, "types1")
   for (@tableIterAdvance(&tvi)) {
-    var pci = @tableIterGetPCI(&tvi)
-    for (; @pciHasNext(pci); @pciAdvance(pci)) {
+    var pci = @tableIterGetVPI(&tvi)
+    for (; @vpiHasNext(pci); @vpiAdvance(pci)) {
       out = @ptrCast(*output_struct, @outputAlloc(execCtx))
-      out.col1 = @pciGetBind(pci, "t", "int_col")
-      out.col2 = @pciGetBind(pci, "t", "real_col")
-      out.col3 = @pciGetBind(pci, "t", "date_col")
-      out.col4 = @pciGetBind(pci, "t", "varchar_col")
-      @outputAdvance(execCtx)
+      out.col1 = @vpiGetInt(pci, 0)
+      out.col2 = @vpiGetReal(pci, 1) + @vpiGetInt(pci, 0)
+      out.col3 = @vpiGetDate(pci, 2)
+      if (@stringLike(@vpiGetVarlen(pci, 3), pattern)) {
+        out.col4 = @vpiGetVarlen(pci, 3)
+      } else {
+        out.col4 = pattern
+      }
     }
   }
   @outputFinalize(execCtx)

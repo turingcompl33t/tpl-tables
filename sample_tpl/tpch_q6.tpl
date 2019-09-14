@@ -2,54 +2,53 @@ struct outputStruct {
   out: Real
 }
 
-struct State {
-  tvi: TableVectorIterator
-  sum: RealSumAggregate
+struct DebugOutputStruct {
+  d1 : Integer
+  d2 : Integer
+  d3 : Integer
+  d4 : Integer
+  d5 : Integer
+  d6 : Integer
+  d7 : Integer
+  d8 : Integer
+  d9 : Integer
+  d10 : Integer
 }
 
-// This should be the first function for binding to occur correctly
-fun setupTables(execCtx: *ExecutionContext, state: *State) -> nil {
-  var tvi: TableVectorIterator
-  @tableIterConstructBind(&state.tvi, "lineitem", execCtx, "li")
-  @tableIterAddColBind(&state.tvi, "li", "l_quantity")
-  @tableIterAddColBind(&state.tvi, "li", "l_extendedprice")
-  @tableIterAddColBind(&state.tvi, "li", "l_discount")
-  @tableIterAddColBind(&state.tvi, "li", "l_shipdate")
-  @tableIterPerformInitBind(&state.tvi, "li")
+struct State {
+  sum: RealSumAggregate
 }
 
 fun setUpState(execCtx: *ExecutionContext, state: *State) -> nil {
   @aggInit(&state.sum)
-  setupTables(execCtx, state)
 }
 
 fun teardownState(execCtx: *ExecutionContext, state: *State) -> nil {
-  @tableIterClose(&state.tvi)
 }
 
 
 fun execQuery(execCtx: *ExecutionContext, state: *State) -> nil {
   // Pipeline 1 (hashing)
-  var tvi = &state.tvi
-  for (@tableIterAdvance(tvi)) {
-    var pci = @tableIterGetPCI(tvi)
-    for (; @pciHasNext(pci); @pciAdvance(pci)) {
-      if (@pciGetBind(pci, "li", "l_quantity") > 24.0
-          and @pciGetBind(pci, "li", "l_discount") > 0.04
-          and @pciGetBind(pci, "li", "l_discount") < 0.06
-          and @pciGetBind(pci, "li", "l_shipdate") >= @dateToSql(1994, 1, 1)
-          and @pciGetBind(pci, "li", "l_shipdate") <= @dateToSql(1995, 1, 1)) {
-        var input = @pciGetBind(pci, "li", "l_extendedprice") * @pciGetBind(pci, "li", "l_discount")
+  var out : *outputStruct
+  var tvi: TableVectorIterator
+  @tableIterInit(&tvi, "lineitem")
+  for (@tableIterAdvance(&tvi)) {
+    var vpi = @tableIterGetVPI(&tvi)
+    for (; @vpiHasNext(vpi); @vpiAdvance(vpi)) {
+      if (@vpiGetReal(vpi, 4) > 24.0 // quantity
+          and @vpiGetReal(vpi, 6) > 0.04 // discount
+          and @vpiGetReal(vpi, 6) < 0.06 // discount
+          and @vpiGetDate(vpi, 10) >= @dateToSql(1994, 1, 1) // ship date
+          and @vpiGetDate(vpi, 10) <= @dateToSql(1995, 1, 1)) { // ship date
+        var input = @vpiGetReal(vpi, 5) * @vpiGetReal(vpi, 6) // extendedprice * discount
         @aggAdvance(&state.sum, &input)
       }
     }
   }
 
   // Pipeline 2 (Output to upper layers)
-  var out : *outputStruct
   out = @ptrCast(*outputStruct, @outputAlloc(execCtx))
   out.out = @aggResult(&state.sum)
-  @outputAdvance(execCtx)
   @outputFinalize(execCtx)
 }
 
