@@ -12,14 +12,14 @@ fun main(execCtx: *ExecutionContext) -> int {
   var pattern = @stringToSql("%d%")
   @tableIterInit(&tvi, "types1")
   for (@tableIterAdvance(&tvi)) {
-    var pci = @tableIterGetVPI(&tvi)
-    for (; @vpiHasNext(pci); @vpiAdvance(pci)) {
+    var pci = @tableIterGetPCI(&tvi)
+    for (; @pciHasNext(pci); @pciAdvance(pci)) {
       out = @ptrCast(*output_struct, @outputAlloc(execCtx))
-      out.col1 = @vpiGetInt(pci, 0)
-      out.col2 = @vpiGetReal(pci, 1) + @vpiGetInt(pci, 0)
-      out.col3 = @vpiGetDate(pci, 2)
-      if (@stringLike(@vpiGetVarlen(pci, 3), pattern)) {
-        out.col4 = @vpiGetVarlen(pci, 3)
+      out.col1 = @pciGetInt(pci, 0)
+      out.col2 = @pciGetDouble(pci, 1) + @pciGetInt(pci, 0)
+      out.col3 = @pciGetDate(pci, 2)
+      if (@stringLike(@pciGetVarlen(pci, 3), pattern)) {
+        out.col4 = @pciGetVarlen(pci, 3)
       } else {
         out.col4 = pattern
       }
