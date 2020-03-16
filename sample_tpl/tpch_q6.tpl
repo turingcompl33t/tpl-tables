@@ -28,6 +28,7 @@ fun teardownState(execCtx: *ExecutionContext, state: *State) -> nil {
 
 
 fun execQuery(execCtx: *ExecutionContext, state: *State) -> nil {
+  @execCtxStartResourceTracker(execCtx, 3)
   // Pipeline 1 (hashing)
   var tvi: TableVectorIterator
   var oids : [4]uint32
@@ -55,6 +56,7 @@ fun execQuery(execCtx: *ExecutionContext, state: *State) -> nil {
   out.out = @aggResult(&state.sum)
   @outputFinalize(execCtx)
   @tableIterClose(&tvi)
+  @execCtxEndResourceTracker(execCtx, @getParamString(execCtx, 0))
 }
 
 fun main(execCtx: *ExecutionContext) -> int32 {

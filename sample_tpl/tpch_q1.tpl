@@ -202,9 +202,15 @@ fun pipeline3(execCtx: *ExecutionContext, state: *State) -> nil {
 fun main(execCtx: *ExecutionContext) -> int64 {
     var state: State
     setUpState(execCtx, &state)
+    @execCtxStartResourceTracker(execCtx, 3)
     pipeline1(execCtx, &state)
+    @execCtxEndResourceTracker(execCtx, @getParamString(execCtx, 0))
+    @execCtxStartResourceTracker(execCtx, 3)
     pipeline2(execCtx, &state)
+    @execCtxEndResourceTracker(execCtx, @getParamString(execCtx, 1))
+    @execCtxStartResourceTracker(execCtx, 3)
     pipeline3(execCtx, &state)
+    @execCtxEndResourceTracker(execCtx, @getParamString(execCtx, 2))
     teardownState(execCtx, &state)
     return state.count
 }

@@ -403,14 +403,30 @@ fun pipeline8(execCtx: *ExecutionContext, state: *State) -> nil {
 
 
 fun execQuery(execCtx: *ExecutionContext, state: *State) -> nil {
+  @execCtxStartResourceTracker(execCtx, 3)
   pipeline1(execCtx, state)
+  @execCtxEndResourceTracker(execCtx, @getParamString(execCtx, 0))
+  @execCtxStartResourceTracker(execCtx, 3)
   pipeline2(execCtx, state)
+  @execCtxEndResourceTracker(execCtx, @getParamString(execCtx, 1))
+  @execCtxStartResourceTracker(execCtx, 3)
   pipeline3(execCtx, state)
+  @execCtxEndResourceTracker(execCtx, @getParamString(execCtx, 2))
+  @execCtxStartResourceTracker(execCtx, 3)
   pipeline4(execCtx, state)
+  @execCtxEndResourceTracker(execCtx, @getParamString(execCtx, 3))
+  @execCtxStartResourceTracker(execCtx, 3)
   pipeline5(execCtx, state)
+  @execCtxEndResourceTracker(execCtx, @getParamString(execCtx, 4))
+  @execCtxStartResourceTracker(execCtx, 3)
   pipeline6(execCtx, state)
+  @execCtxEndResourceTracker(execCtx, @getParamString(execCtx, 5))
+  @execCtxStartResourceTracker(execCtx, 3)
   pipeline7(execCtx, state)
+  @execCtxEndResourceTracker(execCtx, @getParamString(execCtx, 6))
+  @execCtxStartResourceTracker(execCtx, 3)
   pipeline8(execCtx, state)
+  @execCtxEndResourceTracker(execCtx, @getParamString(execCtx, 7))
 }
 
 
