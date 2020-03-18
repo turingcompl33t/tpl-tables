@@ -191,6 +191,7 @@ fun pipeline3_1(execCtx: *ExecutionContext, state: *State) -> nil {
       }
     }
   }
+  @tableIterClose(&ps_tvi)
 }
 
 // Scan partsupp, probe HT2, build agg
@@ -223,6 +224,7 @@ fun pipeline3_2(execCtx: *ExecutionContext, state: *State) -> nil {
       }
     }
   }
+  @tableIterClose(&ps_tvi)
 }
 
 // BNL, sort
