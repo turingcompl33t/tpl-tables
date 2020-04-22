@@ -9,6 +9,9 @@ fun setUpState(execCtx: *ExecutionContext, state: *State) -> nil {
 fun teardownState(execCtx: *ExecutionContext, state: *State) -> nil {
 }
 
+struct outputStruct {
+ c0 : Integer
+}
 
 fun execQuery(execCtx: *ExecutionContext, state: *State) -> nil {
   @execCtxStartResourceTracker(execCtx, 3)
@@ -20,10 +23,12 @@ fun execQuery(execCtx: *ExecutionContext, state: *State) -> nil {
   for (@tableIterAdvance(&tvi)) {
     var pci = @tableIterGetPCI(&tvi)
     for (; @pciHasNext(pci); @pciAdvance(pci)) {
-      var a = @pciGetInt(pci, 0)
+      var out = @ptrCast(*outputStruct, @outputAlloc(execCtx))
+      out.c0 = @pciGetInt(pci, 0)
     }
   }
 
+  @outputFinalize(execCtx)
   @tableIterClose(&tvi)
   @execCtxEndResourceTracker(execCtx, @getParamString(execCtx, 0))
 }

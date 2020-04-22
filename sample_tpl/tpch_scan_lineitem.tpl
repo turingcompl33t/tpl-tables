@@ -9,6 +9,18 @@ fun setUpState(execCtx: *ExecutionContext, state: *State) -> nil {
 fun teardownState(execCtx: *ExecutionContext, state: *State) -> nil {
 }
 
+struct outputStruct {
+ c0 : StringVal
+ c1 : StringVal
+ c2 : Real
+ c3 : Real
+ c4 : Real
+ c5 : Real
+ c6 : Integer
+ c7 : Integer
+ c8 : Integer
+ c9 : Integer
+}
 
 fun execQuery(execCtx: *ExecutionContext, state: *State) -> nil {
   @execCtxStartResourceTracker(execCtx, 3)
@@ -29,19 +41,21 @@ fun execQuery(execCtx: *ExecutionContext, state: *State) -> nil {
   for (@tableIterAdvance(&tvi)) {
     var pci = @tableIterGetPCI(&tvi)
     for (; @pciHasNext(pci); @pciAdvance(pci)) {
-      var a = @pciGetVarlen(pci, 0)
-      var b = @pciGetVarlen(pci, 1)
-      var c = @pciGetDouble(pci, 2)
-      var d = @pciGetDouble(pci, 3)
-      var e = @pciGetDouble(pci, 4)
-      var f = @pciGetDouble(pci, 5)
-      var g = @pciGetInt(pci, 6)
-      var h = @pciGetInt(pci, 7)
-      var i = @pciGetInt(pci, 8)
-      var j = @pciGetInt(pci, 9)
+      var out = @ptrCast(*outputStruct, @outputAlloc(execCtx))
+      out.c0 = @pciGetVarlen(pci, 0)
+      out.c1 = @pciGetVarlen(pci, 1)
+      out.c2 = @pciGetDouble(pci, 2)
+      out.c3 = @pciGetDouble(pci, 3)
+      out.c4 = @pciGetDouble(pci, 4)
+      out.c5 = @pciGetDouble(pci, 5)
+      out.c6 = @pciGetInt(pci, 6)
+      out.c7 = @pciGetInt(pci, 7)
+      out.c8 = @pciGetInt(pci, 8)
+      out.c9 = @pciGetInt(pci, 9)
     }
   }
 
+  @outputFinalize(execCtx)
   @tableIterClose(&tvi)
   @execCtxEndResourceTracker(execCtx, @getParamString(execCtx, 0))
 }
