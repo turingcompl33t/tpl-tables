@@ -191,7 +191,6 @@ fun pipeline1(execCtx: *ExecutionContext, state: *State) -> nil {
         var hash_val = @hash(@pciGetInt(vec, 1)) // r_regionkey
         var build_row1 = @ptrCast(*JoinRow1, @joinHTInsert(&state.join_table1, hash_val))
         build_row1.r_regionkey = @pciGetInt(vec, 1) // r_regionkey
-        state.count = state.count + 1
       }
     }
   }
@@ -223,7 +222,6 @@ fun pipeline2(execCtx: *ExecutionContext, state: *State) -> nil {
         var build_row2 = @ptrCast(*JoinRow2, @joinHTInsert(&state.join_table2, hash_val2))
         build_row2.n_nationkey = @pciGetInt(vec, 1) // n_nationkey
         build_row2.n_name = @pciGetVarlen(vec, 0) // n_name
-        state.count = state.count + 1
       }
     }
   }
@@ -254,7 +252,6 @@ fun pipeline3(execCtx: *ExecutionContext, state: *State) -> nil {
         build_row3.n_nationkey = join_row2.n_nationkey
         build_row3.n_name = join_row2.n_name
         build_row3.c_custkey = @pciGetInt(vec, 0) // c_custkey
-        state.count = state.count + 1
       }
     }
   }
@@ -288,7 +285,6 @@ fun pipeline4(execCtx: *ExecutionContext, state: *State) -> nil {
           build_row4.n_nationkey = join_row3.n_nationkey
           build_row4.n_name = join_row3.n_name
           build_row4.o_orderkey = @pciGetInt(vec, 0) // o_orderkey
-          state.count = state.count + 1
         }
       }
     }
@@ -314,7 +310,6 @@ fun pipeline5(execCtx: *ExecutionContext, state: *State) -> nil {
       var build_row5 = @ptrCast(*JoinRow5, @joinHTInsert(&state.join_table5, hash_val))
       build_row5.s_suppkey = @pciGetInt(vec, 0) // s_suppkey
       build_row5.s_nationkey = @pciGetInt(vec, 1) // s_nationkey
-      state.count = state.count + 1
     }
   }
   @outputFinalize(execCtx)
