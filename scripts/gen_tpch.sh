@@ -1,11 +1,23 @@
-# Create tables
+#!/bin/bash
+# gen_tpch.sh
+# Generate TPCH tables. 
+#
+# Usage:
+#   gen_tpch.sh <SCALE_FACTOR>
+
+# Build dbgen
 cd tpch-dbgen
 make
+
+# Run dbgen
 ./dbgen -f -s $1
+
+# Move the generated tables to the `tables` directory
 mv *.tbl ../tables
 cd ../tables
 
 echo "Formatting..."
+
 # Remove last | in each line
 sed -i 's/[|]$//' part.tbl
 sed -i 's/[|]$//' supplier.tbl
@@ -16,14 +28,15 @@ sed -i 's/[|]$//' lineitem.tbl
 sed -i 's/[|]$//' nation.tbl
 sed -i 's/[|]$//' region.tbl
 
-python gen_tpch.py part
-python gen_tpch.py supplier
-python gen_tpch.py partsupp
-python gen_tpch.py customer
-python gen_tpch.py orders
-python gen_tpch.py lineitem
-python gen_tpch.py nation
-python gen_tpch.py region
+# Cleanup
+python ../scripts/clean_tpch.py part
+python ../scripts/clean_tpch.py supplier
+python ../scripts/clean_tpch.py partsupp
+python ../scripts/clean_tpch.py customer
+python ../scripts/clean_tpch.py orders
+python ../scripts/clean_tpch.py lineitem
+python ../scripts/clean_tpch.py nation
+python ../scripts/clean_tpch.py region
 
 rm *.tbl
 
@@ -38,3 +51,4 @@ rm *.tbl
 #mv region.tbl region.data
 
 echo "Formatted"
+exit 0
