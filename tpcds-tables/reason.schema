@@ -1,0 +1,4 @@
+reason 3
+r_reason_sk integer 0 
+r_reason_id varchar 0 16
+r_reason_desc varchar 0 100

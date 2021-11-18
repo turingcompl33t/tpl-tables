@@ -1,0 +1,5 @@
+inventory 4
+inv_date_sk integer 0 
+inv_item_sk integer 0 
+inv_warehouse_sk integer 0 
+inv_quantity_on_hand integer 0 

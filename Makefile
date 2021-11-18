@@ -28,3 +28,4 @@ clean:
 .PHONY: format
 format:
 	black scripts/*.py
+	black utility/*.py

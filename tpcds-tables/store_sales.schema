@@ -1,0 +1,24 @@
+store_sales 23
+ss_sold_date_sk integer 0 
+ss_sold_time_sk integer 0 
+ss_item_sk integer 0 
+ss_customer_sk integer 0 
+ss_cdemo_sk integer 0 
+ss_hdemo_sk integer 0 
+ss_addr_sk integer 0 
+ss_store_sk integer 0 
+ss_promo_sk integer 0 
+ss_ticket_number integer 0 
+ss_quantity integer 0 
+ss_wholesale_cost float8 0 
+ss_list_price float8 0 
+ss_sales_price float8 0 
+ss_ext_discount_amt float8 0 
+ss_ext_sales_price float8 0 
+ss_ext_wholesale_cost float8 0 
+ss_ext_list_price float8 0 
+ss_ext_tax float8 0 
+ss_coupon_amt float8 0 
+ss_net_paid float8 0 
+ss_net_paid_inc_tax float8 0 
+ss_net_profit float8 0 

@@ -1,0 +1,10 @@
+customer_demographics 9
+cd_demo_sk integer 0 
+cd_gender varchar 0 1
+cd_marital_status varchar 0 1
+cd_education_status varchar 0 20
+cd_purchase_estimate integer 0 
+cd_credit_rating varchar 0 10
+cd_dep_count integer 0 
+cd_dep_employed_count integer 0 
+cd_dep_college_count integer 0 

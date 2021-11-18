@@ -1,0 +1,21 @@
+store_returns 20
+sr_returned_date_sk integer 0 
+sr_return_time_sk integer 0 
+sr_item_sk integer 0 
+sr_customer_sk integer 0 
+sr_cdemo_sk integer 0 
+sr_hdemo_sk integer 0 
+sr_addr_sk integer 0 
+sr_store_sk integer 0 
+sr_reason_sk integer 0 
+sr_ticket_number integer 0 
+sr_return_quantity integer 0 
+sr_return_amt float8 0 
+sr_return_tax float8 0 
+sr_return_amt_inc_tax float8 0 
+sr_fee float8 0 
+sr_return_ship_cost float8 0 
+sr_refunded_cash float8 0 
+sr_reversed_charge float8 0 
+sr_store_credit float8 0 
+sr_net_loss float8 0 

@@ -1,0 +1,20 @@
+promotion 19
+p_promo_sk integer 0 
+p_promo_id varchar 0 16
+p_start_date_sk integer 0 
+p_end_date_sk integer 0 
+p_item_sk integer 0 
+p_cost float8 0 
+p_response_target integer 0 
+p_promo_name varchar 0 50
+p_channel_dmail varchar 0 1
+p_channel_email varchar 0 1
+p_channel_catalog varchar 0 1
+p_channel_tv varchar 0 1
+p_channel_radio varchar 0 1
+p_channel_press varchar 0 1
+p_channel_event varchar 0 1
+p_channel_demo varchar 0 1
+p_channel_details varchar 0 100
+p_purpose varchar 0 15
+p_discount_active varchar 0 1

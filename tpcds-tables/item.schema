@@ -1,0 +1,23 @@
+item 22
+i_item_sk integer 0 
+i_item_id varchar 0 16
+i_rec_start_date date 0 
+i_rec_end_date date 0 
+i_item_desc varchar 0 200
+i_current_price float8 0 
+i_wholesale_cost float8 0 
+i_brand_id integer 0 
+i_brand varchar 0 50
+i_class_id integer 0 
+i_class varchar 0 50
+i_category_id integer 0 
+i_category varchar 0 50
+i_manufact_id integer 0 
+i_manufact varchar 0 50
+i_size varchar 0 20
+i_formulation varchar 0 20
+i_color varchar 0 20
+i_units varchar 0 10
+i_container varchar 0 10
+i_manager_id integer 0 
+i_product_name varchar 0 50

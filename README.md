@@ -1,6 +1,7 @@
-# Generating Tables for TPL Tests
+# Generating Tables for DBMS Benchmarks
 
 ## General Format
+
 There are two kinds of files, **.data** and **.schema** files:
 * **.data** files are simple CSV files containing the data.
 * **.schema** files are more complex. They have two parts:
@@ -25,6 +26,7 @@ table_col1 table_col2 ... (num_index_cols2 times)
 ## Concrete Example
 
 ***types.data***
+
 ```txt
 int_col,real_col,date_col,varchar_col
 0,3.7,2000-01-13,First string
@@ -34,6 +36,7 @@ int_col,real_col,date_col,varchar_col
 ```
 
 **types.schema**
+
 ```txt
 types 4
 int_col int 0
@@ -51,12 +54,14 @@ This creates:
 * An index on the table, where the key is the table's first column.
 
 ## TPCH Tables
+
 To generate tpch tables with the **dbgen** program, execute:
 ```sh
 bash gen_tpch.sh <scale_factor>
 ```
 
 ## Usage in TPL tests
+
 To load a table, use:
 ```C++
 // Load a single table

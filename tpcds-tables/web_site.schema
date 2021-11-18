@@ -1,0 +1,27 @@
+web_site 26
+web_site_sk integer 0 
+web_site_id varchar 0 16
+web_rec_start_date date 0 
+web_rec_end_date date 0 
+web_name varchar 0 50
+web_open_date_sk integer 0 
+web_close_date_sk integer 0 
+web_class varchar 0 50
+web_manager varchar 0 40
+web_mkt_id integer 0 
+web_mkt_class varchar 0 50
+web_mkt_description varchar 0 100
+web_market_maneger varchar 0 40
+web_company_id integer 0 
+web_company_name varchar 0 50
+web_street_number varchar 0 10
+web_street_name varchar 0 60
+web_street_type varchar 0 15
+web_suite_number varchar 0 10
+web_city varchar 0 60
+web_county varchar 0 30
+web_state varchar 0 2
+web_zip varchar 0 10
+web_country varchar 0 20
+web_gmt_offset float8 0 
+web_tax_percentage float8 0 

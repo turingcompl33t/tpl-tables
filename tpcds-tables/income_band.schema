@@ -1,0 +1,4 @@
+income_band 3
+ib_income_band_sk integer 0 
+ib_lower_bound integer 0 
+ib_upper_bound integer 0 
