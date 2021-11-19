@@ -206,8 +206,10 @@ def generate_schema(table_meta: TableMeta, output_dir: str):
         # Write the descriptor for each of the columns
         for i, column in enumerate(table_meta.schema.columns):
             c, l = clean_column_type(column.type)
-            newline = "" if i + 1 == len(table_meta.schema.columns) else "\n"
-            f.write(f"{column.name} {c} 0 {l}{newline}")
+            f.write(f"{column.name} {c} 1 {l}\n")
+
+        # Write the 0 value for number of indexes
+        f.write("\n0")
 
 
 def generate_schemas(ddl, output_dir):

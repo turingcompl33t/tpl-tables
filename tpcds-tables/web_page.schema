@@ -1,15 +1,17 @@
 web_page 14
-wp_web_page_sk integer 0 
-wp_web_page_id varchar 0 16
-wp_rec_start_date date 0 
-wp_rec_end_date date 0 
-wp_creation_date_sk integer 0 
-wp_access_date_sk integer 0 
-wp_autogen_flag varchar 0 1
-wp_customer_sk integer 0 
-wp_url varchar 0 100
-wp_type varchar 0 50
-wp_char_count integer 0 
-wp_link_count integer 0 
-wp_image_count integer 0 
-wp_max_ad_count integer 0 
+wp_web_page_sk integer 1 
+wp_web_page_id varchar 1 16
+wp_rec_start_date date 1 
+wp_rec_end_date date 1 
+wp_creation_date_sk integer 1 
+wp_access_date_sk integer 1 
+wp_autogen_flag varchar 1 1
+wp_customer_sk integer 1 
+wp_url varchar 1 100
+wp_type varchar 1 50
+wp_char_count integer 1 
+wp_link_count integer 1 
+wp_image_count integer 1 
+wp_max_ad_count integer 1 
+
+0

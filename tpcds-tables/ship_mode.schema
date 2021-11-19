@@ -1,7 +1,9 @@
 ship_mode 6
-sm_ship_mode_sk integer 0 
-sm_sip_mode_id varchar 0 16
-sm_type varchar 0 30
-sm_code varchar 0 10
-sm_carrier varchar 0 20
-sm_contract varchar 0 20
+sm_ship_mode_sk integer 1 
+sm_sip_mode_id varchar 1 16
+sm_type varchar 1 30
+sm_code varchar 1 10
+sm_carrier varchar 1 20
+sm_contract varchar 1 20
+
+0

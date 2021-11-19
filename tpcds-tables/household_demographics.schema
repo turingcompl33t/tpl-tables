@@ -1,6 +1,8 @@
 household_demographics 5
-hd_demo_sk integer 0 
-hd_income_band_sk integer 0 
-hd_buy_potential varchar 0 15
-hd_dep_count integer 0 
-hd_vehicle_count integer 0 
+hd_demo_sk integer 1 
+hd_income_band_sk integer 1 
+hd_buy_potential varchar 1 15
+hd_dep_count integer 1 
+hd_vehicle_count integer 1 
+
+0

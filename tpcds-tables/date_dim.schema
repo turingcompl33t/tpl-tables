@@ -1,29 +1,31 @@
 date_dim 28
-d_date_sk integer 0 
-d_date_id varchar 0 16
-d_date date 0 
-d_month_seq integer 0 
-d_week_seq integer 0 
-d_quarter_seq integer 0 
-d_year integer 0 
-d_dow integer 0 
-d_moy integer 0 
-d_dom integer 0 
-d_qoy integer 0 
-d_fy_year integer 0 
-d_fy_quarter_seq integer 0 
-d_fy_week_seq integer 0 
-d_day_name varchar 0 9
-d_quarter_name varchar 0 16
-d_holiday varchar 0 1
-d_weekend varchar 0 1
-d_following_holiday varchar 0 1
-d_first_dom integer 0 
-d_last_dom integer 0 
-d_same_day_ly integer 0 
-d_same_day_lq integer 0 
-d_current_day varchar 0 1
-d_current_week varchar 0 1
-d_current_month varchar 0 1
-d_current_quarter varchar 0 1
-d_current_year varchar 0 1
+d_date_sk integer 1 
+d_date_id varchar 1 16
+d_date date 1 
+d_month_seq integer 1 
+d_week_seq integer 1 
+d_quarter_seq integer 1 
+d_year integer 1 
+d_dow integer 1 
+d_moy integer 1 
+d_dom integer 1 
+d_qoy integer 1 
+d_fy_year integer 1 
+d_fy_quarter_seq integer 1 
+d_fy_week_seq integer 1 
+d_day_name varchar 1 9
+d_quarter_name varchar 1 16
+d_holiday varchar 1 1
+d_weekend varchar 1 1
+d_following_holiday varchar 1 1
+d_first_dom integer 1 
+d_last_dom integer 1 
+d_same_day_ly integer 1 
+d_same_day_lq integer 1 
+d_current_day varchar 1 1
+d_current_week varchar 1 1
+d_current_month varchar 1 1
+d_current_quarter varchar 1 1
+d_current_year varchar 1 1
+
+0

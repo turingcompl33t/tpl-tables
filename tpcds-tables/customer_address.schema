@@ -1,14 +1,16 @@
 customer_address 13
-ca_address_sk integer 0 
-ca_address_id varchar 0 16
-ca_street_number varchar 0 10
-ca_street_name varchar 0 60
-ca_street_type varchar 0 15
-ca_suite_number varchar 0 10
-ca_city varchar 0 60
-ca_county varchar 0 30
-ca_state varchar 0 2
-ca_zip varchar 0 10
-ca_country varchar 0 20
-ca_gmt_offset float8 0 
-ca_location_type varchar 0 20
+ca_address_sk integer 1 
+ca_address_id varchar 1 16
+ca_street_number varchar 1 10
+ca_street_name varchar 1 60
+ca_street_type varchar 1 15
+ca_suite_number varchar 1 10
+ca_city varchar 1 60
+ca_county varchar 1 30
+ca_state varchar 1 2
+ca_zip varchar 1 10
+ca_country varchar 1 20
+ca_gmt_offset float8 1 
+ca_location_type varchar 1 20
+
+0

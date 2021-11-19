@@ -14,6 +14,7 @@ cd ..
 
 # Move the generated tables to the `tables` directory
 mv tpcds-dbgen/*.dat tpcds-tables
+rm tpcds-tables/dbgen_version.dat
 for f in tpcds-tables/*.dat; do 
     mv -- "$f" "${f%.dat}.tbl"
 done
