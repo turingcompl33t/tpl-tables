@@ -9,7 +9,7 @@
 make -C tpcds-dbgen dsdgen
 
 # Run dbgen
-cd tpcds-dbgen && ./dsdgen -force -scale $1
+cd tpcds-dbgen && ./dsdgen -force -scale 1
 cd ..
 
 # Move the generated tables to the `tables` directory
@@ -17,6 +17,12 @@ mv tpcds-dbgen/*.dat tpcds-tables
 for f in tpcds-tables/*.dat; do 
     mv -- "$f" "${f%.dat}.tbl"
 done
+
+echo "Subsetting for scale factor..."
+
+python scripts/scale.py tpcds-tables/ $1
+
+echo "Done"
 
 echo "Formatting..."
 
@@ -35,5 +41,5 @@ cp tpcds-tables/web_sales.data tpcds-tables/web_sales_history.data
 # Remove the source tables
 rm tpcds-tables/*.tbl
 
-echo "Formatted"
+echo "Done"
 exit 0

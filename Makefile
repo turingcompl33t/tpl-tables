@@ -1,7 +1,7 @@
 # Makefile
 
 # The scale factor for table generation
-SCALE_FACTOR=1
+SCALE_FACTOR=0.1
 
 default:
 	@echo No default target!
@@ -16,6 +16,7 @@ generate-tpch:
 generate-tpcds:
 	./scripts/gen_tpcds.sh ${SCALE_FACTOR}
 
+# Clean all TPC tools and generated tables
 .PHONY: clean
 clean:
 	# Clean build tools

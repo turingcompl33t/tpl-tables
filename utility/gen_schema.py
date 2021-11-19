@@ -169,6 +169,7 @@ def load_table_metadata(schema_file: str) -> List[TableMeta]:
 # Schema File Generation
 # -----------------------------------------------------------------------------
 
+
 def clean_column_type(type: str) -> Tuple[str, str]:
     """
     Construct a string suitable for schema file from column type.
@@ -180,7 +181,7 @@ def clean_column_type(type: str) -> Tuple[str, str]:
         return type, ""
     if type.startswith("char"):
         # Slice off any width specifier for CHAR
-        return type[:len("char")], ""
+        return type[: len("char")], ""
     if type.startswith("varchar"):
         # Slice off any width specifier for VARCHAR
         m = re.search("((\d+))", type)
@@ -189,7 +190,7 @@ def clean_column_type(type: str) -> Tuple[str, str]:
         b, e = m.span()
         return f"{type[:len('varchar')]}", f"{type[b : e]}"
     raise RuntimeError(f"Unknown Type in DDL {type}")
-    
+
 
 def generate_schema(table_meta: TableMeta, output_dir: str):
     """
@@ -205,18 +206,20 @@ def generate_schema(table_meta: TableMeta, output_dir: str):
         # Write the descriptor for each of the columns
         for i, column in enumerate(table_meta.schema.columns):
             c, l = clean_column_type(column.type)
-            newline = '' if i + 1 == len(table_meta.schema.columns) else '\n'
+            newline = "" if i + 1 == len(table_meta.schema.columns) else "\n"
             f.write(f"{column.name} {c} 0 {l}{newline}")
 
 
 def generate_schemas(ddl, output_dir):
     # Load the table metadata for each table defined in the DDL file
-    for tm in  load_table_metadata(ddl):
+    for tm in load_table_metadata(ddl):
         generate_schema(tm, output_dir)
+
 
 # -----------------------------------------------------------------------------
 # Main
 # -----------------------------------------------------------------------------
+
 
 def main() -> int:
     ddl, output_dir = parse_arguments()
@@ -227,6 +230,7 @@ def main() -> int:
         return EXIT_SUCCESS
 
     return EXIT_SUCCESS
+
 
 # -----------------------------------------------------------------------------
 # Script Entry
